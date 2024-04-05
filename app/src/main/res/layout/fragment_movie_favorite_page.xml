@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="30px"
+    tools:context=".screens.detailFavoritePage.DetailFavoriteFragment">
+    <LinearLayout
+        android:id="@+id/loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:translationZ="20dp"
+        android:visibility="visible"
+        tools:visibility="gone">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="Загрузка"/>
+    </LinearLayout>
+    <Button
+        android:id="@+id/button_back"
+        android:layout_width="80pt"
+        android:layout_height="60dp"
+        android:text="Назад"
+        app:layout_constraintBottom_toBottomOf="@+id/button_add_favorit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_add_favorit"
+        android:layout_height="60dp"
+        android:layout_width="80pt"
+        android:text="Добавить в Избранное"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_poster"
+        android:layout_width="200dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_add_favorit" />
+
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:textStyle="bold"
+        android:layout_width="150dp"
+        android:textSize="20dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_poster"
+        app:layout_constraintTop_toTopOf="@+id/iv_poster"
+        tools:text="Кунгфу панда 4" />
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:id="@+id/tv_movie_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_tags"
+        tools:text="reghrthyjevybytinryercvyuktr dfhrig uogr hkgjhrtg jhrtgjkhgjkerghbub hbjhtrth hbrjhyjk rbjkh jktj j kjkjh rtyreghrthyjevybytinryercvyuktr dfhrig uogr hkgjhrtg jhrtgjkhgjkerghbub hbjhtrth hbrjhyjk rbjkh jktj j kjkjh rty" />
+
+    <TextView
+        android:id="@+id/tv_genres"
+        android:textStyle="bold"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@+id/tv_genres_label"
+        app:layout_constraintTop_toBottomOf="@+id/tv_genres_label"
+        tools:text="TextView, TextV5iew, , Text7View, " />
+
+    <TextView
+        android:textSize="16dp"
+        android:id="@+id/tv_genres_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Жанры"
+        app:layout_constraintStart_toStartOf="@+id/tv_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+    <TextView
+        android:textSize="16dp"
+        android:layout_marginTop="15dp"
+        android:id="@+id/tv_rating_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Рейтинг"
+        app:layout_constraintStart_toStartOf="@+id/tv_genres"
+        app:layout_constraintTop_toBottomOf="@+id/tv_genres" />
+
+    <TextView
+        android:id="@+id/tv_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="2345.124"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_rating_label"
+        app:layout_constraintStart_toEndOf="@+id/tv_rating_label"
+        app:layout_constraintTop_toTopOf="@+id/tv_rating_label" />
+
+    <TextView
+        android:id="@+id/tv_runtime_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Время"
+        android:textSize="16dp"
+        app:layout_constraintStart_toStartOf="@+id/tv_genres"
+        app:layout_constraintTop_toBottomOf="@+id/tv_rating_label" />
+
+    <TextView
+        android:id="@+id/tv_runtime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        tools:text="90 минут"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_runtime_label"
+        app:layout_constraintStart_toEndOf="@+id/tv_runtime_label"
+        app:layout_constraintTop_toTopOf="@+id/tv_runtime_label" />
+
+    <TextView
+        android:id="@+id/tv_tags"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_poster"
+        app:layout_constraintStart_toStartOf="@+id/tv_tags_label"
+        tools:text="TextView, TextV5iew, , Text7View, TextV5iew, , Text7View, TextV5iew, , Text7View, " />
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:id="@+id/tv_tags_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Теги"
+        android:textSize="16dp"
+        app:layout_constraintStart_toStartOf="@+id/tv_runtime_label"
+        app:layout_constraintTop_toBottomOf="@+id/tv_runtime_label" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
