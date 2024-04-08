@@ -10,7 +10,7 @@ interface MovieRepository {
     ): List<SimpleMovieInfoDomain>
 
     suspend fun searchMovieById(
-        movie_id: Int,
+        movieId: Int,
     ): SimpleMovieInfoByIdDomain
 
     suspend fun authentication(

@@ -33,10 +33,10 @@ class MovieRepositoryImpl @Inject constructor(
     }
 
     override suspend fun searchMovieById(
-        movie_id: Int
+        movieId: Int
     ): SimpleMovieInfoByIdDomain {
         val response = networkService.getDetailMovieById(
-            movie_id = movie_id,
+            movie_id = movieId,
             language = "ru",
             token = Constants.TOKEN
         )

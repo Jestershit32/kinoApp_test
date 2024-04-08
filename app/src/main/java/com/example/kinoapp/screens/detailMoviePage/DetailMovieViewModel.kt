@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.kinoapp.Screens
 import com.example.kinoapp.localDb.entitys.FavoriteMovie
 import com.example.kinoapp.localDb.repository.AppDatabaseRepository
-import com.example.kinoapp.network.models.SimpleMovieInfoById
 import com.example.kinoapp.network.models.SimpleMovieInfoByIdDomain
 import com.example.kinoapp.network.repository.MovieRepository
 import com.example.kinoapp.presentation.BaseViewModel
@@ -55,7 +54,7 @@ class DetailMovieViewModel @Inject constructor(
         _isFavorite.value = movieItemByID != null
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val result = movieRepository.searchMovieById(movie_id = id)
+                val result = movieRepository.searchMovieById(movieId = id)
                 withContext(Dispatchers.Main) {
                     _movieInfoLiveData.postValue(result)
                     _isLoading.value = false

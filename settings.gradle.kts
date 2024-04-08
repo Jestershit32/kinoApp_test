@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "kinoApp"
 include(":app")
- 
+include(":networking")
