@@ -5,8 +5,9 @@ import com.drus.githubsearch.networking.NetworkService
 import com.example.kinoapp.R
 import com.example.kinoapp.network.models.PostBodyforLogin
 import com.example.kinoapp.network.models.ResponseBody
-import com.example.kinoapp.network.models.SimpleMovieInfo
-import com.example.kinoapp.network.models.SimpleMovieInfoById
+import com.example.kinoapp.network.models.SimpleMovieInfoByIdDomain
+import com.example.kinoapp.network.models.SimpleMovieInfoDomain
+import com.example.kinoapp.network.models.toDomain
 import com.example.kinoapp.utils.Constants
 import com.example.kinoapp.utils.StringProvider
 import com.example.kinoapp.utils.exception.AuthException
@@ -19,7 +20,7 @@ class MovieRepositoryImpl @Inject constructor(
 ) : MovieRepository {
     override suspend fun searchMovie(
         page: Int,
-    ): List<SimpleMovieInfo> {
+    ): List<SimpleMovieInfoDomain> {
         val response = networkService.getMovies(
             sort_by = "popular",
             language = "ru",
@@ -28,19 +29,19 @@ class MovieRepositoryImpl @Inject constructor(
         )
         if (!response.isSuccessful)
             throw Exception(response.errorBody()?.string())
-        return response.body()?.results ?: listOf()
+        return response.body()?.results?.toDomain() ?: listOf()
     }
 
     override suspend fun searchMovieById(
         movie_id: Int
-    ): SimpleMovieInfoById {
+    ): SimpleMovieInfoByIdDomain {
         val response = networkService.getDetailMovieById(
             movie_id = movie_id,
             language = "ru",
             token = Constants.TOKEN
         )
         if (!response.isSuccessful) throw Exception(response.errorBody()?.string())
-        return response.body() ?: throw Exception(stringProvider.getString( R.string.exception_network))
+        return response.body()?.toDomain() ?: throw Exception(stringProvider.getString( R.string.exception_network))
     }
 
     override suspend fun authentication(

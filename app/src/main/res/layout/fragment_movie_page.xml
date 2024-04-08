@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="30px"
+    android:padding="30dp"
     tools:context=".screens.detailMoviePage.DetailMovieFragment">
     <LinearLayout
         android:id="@+id/modal"
@@ -58,13 +58,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:text="Загрузка"/>
+            android:text="@string/Loading"/>
     </LinearLayout>
     <Button
         android:id="@+id/button_back"
         android:layout_width="80pt"
         android:layout_height="60dp"
-        android:text="Назад"
+        android:text="@string/back"
         app:layout_constraintBottom_toBottomOf="@+id/button_add_favorit"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -73,7 +73,7 @@
         android:id="@+id/button_add_favorit"
         android:layout_height="60dp"
         android:layout_width="80pt"
-        android:text="Добавить в Избранное"
+        android:text="@string/add_in_favorites"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     <ImageView
@@ -89,7 +89,7 @@
         android:id="@+id/tv_title"
         android:textStyle="bold"
         android:layout_width="150dp"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/iv_poster"
@@ -102,7 +102,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="15dp"
-        android:textSize="16dp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_tags"
@@ -119,22 +119,22 @@
         tools:text="TextView, TextV5iew, , Text7View, " />
 
     <TextView
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:id="@+id/tv_genres_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:text="Жанры"
+        android:text="@string/genries_label"
         app:layout_constraintStart_toStartOf="@+id/tv_title"
         app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
     <TextView
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:layout_marginTop="15dp"
         android:id="@+id/tv_rating_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Рейтинг"
+        android:text="@string/Rating"
         app:layout_constraintStart_toStartOf="@+id/tv_genres"
         app:layout_constraintTop_toBottomOf="@+id/tv_genres" />
 
@@ -143,7 +143,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:text="2345.124"
+        tools:text="2345.124"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/tv_rating_label"
         app:layout_constraintStart_toEndOf="@+id/tv_rating_label"
@@ -154,8 +154,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:text="Время"
-        android:textSize="16dp"
+        android:text="@string/time"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/tv_genres"
         app:layout_constraintTop_toBottomOf="@+id/tv_rating_label" />
 
@@ -184,8 +184,8 @@
         android:id="@+id/tv_tags_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Теги"
-        android:textSize="16dp"
+        android:text="@string/tags"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/tv_runtime_label"
         app:layout_constraintTop_toBottomOf="@+id/tv_runtime_label" />
 </androidx.constraintlayout.widget.ConstraintLayout>

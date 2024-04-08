@@ -45,14 +45,9 @@ class DetailFavoriteViewModel @Inject constructor(
         router.navigateTo(Screens.favoritesPage())
     }
 
-    fun addOrDeletInFavorit(movieItem: FavoriteMovie) {
+    fun addOrDeleteInFavorit(movieItem: FavoriteMovie) {
 
         if (_isFavorite.value == false) {
-            var genreLine:String=""
-            movieItem.genres.forEach{genre ->
-                genreLine="$genreLine $genre"
-            }
-
             val movie =
                 FavoriteMovie(
                     idRoom = null,
@@ -61,11 +56,10 @@ class DetailFavoriteViewModel @Inject constructor(
                     id = movieItem.id,
                     overview = movieItem.overview,
                     rating = movieItem.rating,
-                    genres = genreLine,
+                    genres = movieItem.genres,
                     runtime = movieItem.runtime,
                     tags=movieItem.tags,
-                    poster_path = movieItem.poster_path
-                )
+                    posterPath = movieItem.posterPath,)
             databaseRepository.addInFavorite(movie)
             _isFavorite.value = true
         } else {

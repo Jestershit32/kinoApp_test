@@ -60,15 +60,12 @@ class DetailMovieFragment : DaggerFragment(R.layout.fragment_movie_page) {
                 tvMovieDescription.text = item.overview.ifEmpty { getString(R.string.not_descripting) }
                 tvRating.text = item.popularity.toString()
                 tvRuntime.text = "${item.runtime} ${getString(R.string.minutes)}"
-
-                var genres = ""
-                item.genres.forEach { genres = "$genres ${it.name}" }
-                tvGenres.text = genres
+                tvGenres.text = item.genres.joinToString(", ")
 
                 if (item.tagline.isEmpty()) tvTagsLabel.visibility = View.INVISIBLE
                 tvTags.text = item.tagline
 
-                ivPoster.load(Constants.HEAD_IMG_URL+item.poster_path) {
+                ivPoster.load(Constants.HEAD_IMG_URL+item.posterPath) {
                     crossfade(true)
                 }
             }

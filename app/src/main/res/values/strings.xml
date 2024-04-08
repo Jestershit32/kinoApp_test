@@ -20,4 +20,10 @@
     <string name="rating" translatable="false">Рейтинг:</string>
     <string name="movie_name">Название фильма</string>
     <string name="movie_description">Описание Фильма</string>
+    <string name="Loading">Загрузка</string>
+    <string name="genries_label">Жанры</string>
+    <string name="Rating">Рейтинг</string>
+    <string name="time">Время</string>
+    <string name="tags">Теги</string>
+    <string name="poster">poster</string>
 </resources>

@@ -7,19 +7,19 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.kinoapp.databinding.MovieItemHolderBinding
-import com.example.kinoapp.network.models.SimpleMovieInfo
+import com.example.kinoapp.network.models.SimpleMovieInfoDomain
 import com.example.kinoapp.utils.Constants
 
 class MovieListAdapter(val onItemClick: (id: Int) -> Unit) :
-    ListAdapter<SimpleMovieInfo, MovieListAdapter.ItemHolder>(ItemComparator()) {
+    ListAdapter<SimpleMovieInfoDomain, MovieListAdapter.ItemHolder>(ItemComparator()) {
 
     inner class ItemHolder(private val binding: MovieItemHolderBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: SimpleMovieInfo) = with(binding) {
+        fun bind(item: SimpleMovieInfoDomain) = with(binding) {
             movieName.text = item.title
             movieDescription.text = item.overview
             movieRating.text = item.popularity.toString()
-            binding.imageView.load(Constants.HEAD_IMG_URL + item.poster_path) {
+            binding.imageView.load(Constants.HEAD_IMG_URL + item.posterPath) {
                 crossfade(true)
             }
             binding.root.setOnClickListener {
@@ -28,14 +28,14 @@ class MovieListAdapter(val onItemClick: (id: Int) -> Unit) :
         }
     }
 
-    class ItemComparator : DiffUtil.ItemCallback<SimpleMovieInfo>() {
-        override fun areItemsTheSame(oldItem: SimpleMovieInfo, newItem: SimpleMovieInfo): Boolean {
+    class ItemComparator : DiffUtil.ItemCallback<SimpleMovieInfoDomain>() {
+        override fun areItemsTheSame(oldItem: SimpleMovieInfoDomain, newItem: SimpleMovieInfoDomain): Boolean {
             return oldItem == newItem
         }
 
         override fun areContentsTheSame(
-            oldItem: SimpleMovieInfo,
-            newItem: SimpleMovieInfo
+            oldItem: SimpleMovieInfoDomain,
+            newItem: SimpleMovieInfoDomain
         ): Boolean {
             return oldItem.id == newItem.id
         }

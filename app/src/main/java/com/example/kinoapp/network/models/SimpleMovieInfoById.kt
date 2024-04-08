@@ -60,9 +60,9 @@ data class SimpleMovieInfoById(
     @SerializedName("adult")
     val adult: Boolean,
     @SerializedName("backdrop_path")
-    val backdrop_path: String,
+    val backdropPath: String,
     @SerializedName("belongs_to_collection")
-    val belongs_to_collection: Collection,
+    val belongsToCollection: Collection,
     @SerializedName("budget")
     val budget: String,
     @SerializedName("genres")
@@ -70,27 +70,27 @@ data class SimpleMovieInfoById(
     @SerializedName("id")
     val id: Int,
     @SerializedName("original_language")
-    val original_language: String,
+    val originalLanguage: String,
     @SerializedName("original_title")
-    val original_title: String,
+    val originalTitle: String,
     @SerializedName("overview")
     val overview: String,
     @SerializedName("popularity")
     val popularity: Float,
     @SerializedName("poster_path")
-    val poster_path: String,
+    val posterPath: String,
     @SerializedName("production_companies")
-    val production_companies: List<Companies>,
+    val productionCompanies: List<Companies>,
     @SerializedName("production_countries")
-    val production_countries: List<Countries>,
+    val productionCountries: List<Countries>,
     @SerializedName("revenue")
     val revenue: Int,
     @SerializedName("release_date")
-    val release_date: String,
+    val releaseDate: String,
     @SerializedName("runtime")
     val runtime: Int,
     @SerializedName("spoken_languages")
-    val spoken_languages: List<Language>,
+    val spokenLanguages: List<Language>,
     @SerializedName("status")
     val status: String,
     @SerializedName("tagline")
@@ -100,8 +100,44 @@ data class SimpleMovieInfoById(
     @SerializedName("video")
     val video: Boolean,
     @SerializedName("vote_average")
-    val vote_average: Float,
+    val voteAverage: Float,
     @SerializedName("vote_count")
-    val vote_count: Int,
+    val voteCount: Int,
 ) : Parcelable
+
+
+data class SimpleMovieInfoByIdDomain(
+    val genres: List<String>,
+    val id: Int,
+    val overview: String,
+    val popularity: Float,
+    val posterPath: String,
+    val runtime: Int,
+    val tagline: String,
+    val title: String,
+    val voteAverage: Float,
+    val voteCount: Int,
+)
+
+fun SimpleMovieInfoById.toDomain(): SimpleMovieInfoByIdDomain {
+    val genreListString= mutableListOf("")
+
+
+    this.genres.forEach { item->
+        genreListString.add(item.name)
+    }
+    return SimpleMovieInfoByIdDomain(
+        id=this.id,
+        genres =genreListString,
+        overview = this.overview,
+        popularity=this.popularity,
+        posterPath= this.posterPath,
+        runtime = this.runtime,
+        tagline = this.tagline,
+        title = this.title,
+        voteAverage = this.voteAverage,
+        voteCount = this.voteCount,
+    )
+}
+
 

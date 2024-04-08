@@ -24,7 +24,8 @@
                 android:layout_width="160dp"
                 android:layout_height="240dp"
                 android:background="@color/white"
-                android:elevation="10dp" />
+                android:elevation="10dp"
+                android:contentDescription="@string/poster" />
 
             <TextView
                 android:id="@+id/movie_name"

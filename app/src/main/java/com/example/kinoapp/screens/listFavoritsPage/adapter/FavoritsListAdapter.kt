@@ -19,7 +19,7 @@ class FavoritsListAdapter(val onItemClick: (id: Int) -> Unit) :
             movieName.text = item.title
             movieDescription.text = item.overview
             movieRating.text = item.rating.toString()
-            binding.imageView.load(Constants.HEAD_IMG_URL + item.poster_path) {
+            binding.imageView.load(Constants.HEAD_IMG_URL + item.posterPath) {
                 crossfade(true)
             }
             binding.root.setOnClickListener {

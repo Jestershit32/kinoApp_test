@@ -42,16 +42,16 @@ class DetailFavoriteFragment : DaggerFragment(R.layout.fragment_movie_favorite_p
             with(binding) {
                 buttonBack.setOnClickListener { viewModel.backToFavoritesPage() }
                 buttonAddFavorit.setOnClickListener {
-                    viewModel.addOrDeletInFavorit(movieItem = item)
+                    viewModel.addOrDeleteInFavorit(movieItem = item)
                 }
                 tvTitle.text = item.title
                 tvMovieDescription.text = item.overview.ifEmpty {getString(R.string.not_descripting)}
                 tvRating.text = item.rating.toString()
                 tvRuntime.text = "${item.runtime} ${getString(R.string.minutes)}"
-                tvGenres.text = item.genres
+                tvGenres.text = item.genres.joinToString(", ")
                 if(item.tags.isEmpty()) tvTagsLabel.visibility=View.INVISIBLE
                 tvTags.text = item.tags
-                ivPoster.load(Constants.HEAD_IMG_URL+item.poster_path){
+                ivPoster.load(Constants.HEAD_IMG_URL+item.posterPath){
                     crossfade(true)
                 }
             }

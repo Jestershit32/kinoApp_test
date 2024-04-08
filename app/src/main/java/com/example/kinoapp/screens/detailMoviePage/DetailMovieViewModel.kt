@@ -8,6 +8,7 @@ import com.example.kinoapp.Screens
 import com.example.kinoapp.localDb.entitys.FavoriteMovie
 import com.example.kinoapp.localDb.repository.AppDatabaseRepository
 import com.example.kinoapp.network.models.SimpleMovieInfoById
+import com.example.kinoapp.network.models.SimpleMovieInfoByIdDomain
 import com.example.kinoapp.network.repository.MovieRepository
 import com.example.kinoapp.presentation.BaseViewModel
 import com.example.kinoapp.utils.Constants
@@ -24,12 +25,12 @@ class DetailMovieViewModel @Inject constructor(
     private val sharedPreferences: SharedPreferences,
 ) : BaseViewModel() {
     private val userName = sharedPreferences.getString(Constants.USERNAME, null) ?: "ADMIN"
-    private val requestToken = sharedPreferences.getString(Constants.REQUEST_TOKEN, null) ?: "ADMIN"
+//    private val requestToken = sharedPreferences.getString(Constants.REQUEST_TOKEN, null) ?: "ADMIN"
 
-    private val _movieInfoLiveData: MutableLiveData<SimpleMovieInfoById> by lazy {
-        MutableLiveData<SimpleMovieInfoById>()
+    private val _movieInfoLiveData: MutableLiveData<SimpleMovieInfoByIdDomain> by lazy {
+        MutableLiveData<SimpleMovieInfoByIdDomain>()
     }
-    val movieInfoLiveData: LiveData<SimpleMovieInfoById>
+    val movieInfoLiveData: LiveData<SimpleMovieInfoByIdDomain>
         get() = _movieInfoLiveData
 
     private val _isLoading: MutableLiveData<Boolean> = MutableLiveData(true)
@@ -73,12 +74,8 @@ class DetailMovieViewModel @Inject constructor(
         router.backTo(Screens.movieListPage())
     }
 
-    fun addOrDeletInFavorit(movieItem: SimpleMovieInfoById) {
+    fun addOrDeletInFavorit(movieItem: SimpleMovieInfoByIdDomain) {
         if (_isFavorite.value == false) {
-            var genreLine: String = ""
-            movieItem.genres.forEach { genre ->
-                genreLine = "$genreLine ${genre.name}"
-            }
             val movie =
                 FavoriteMovie(
                     idRoom = null,
@@ -87,10 +84,10 @@ class DetailMovieViewModel @Inject constructor(
                     id = movieItem.id,
                     overview = movieItem.overview,
                     rating = movieItem.popularity,
-                    genres = genreLine,
+                    genres = movieItem.genres,
                     runtime = movieItem.runtime,
                     tags = movieItem.tagline,
-                    poster_path = movieItem.poster_path
+                    posterPath = movieItem.posterPath
                 )
             databaseRepository.addInFavorite(movie)
             _isFavorite.value = true

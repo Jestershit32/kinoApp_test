@@ -18,7 +18,7 @@ data class FavoriteMovie(
     @ColumnInfo("overview")
     val overview: String,
     @ColumnInfo("genres")
-    val genres:String,
+    val genres:List<String>,
     @ColumnInfo("runtime")
     val runtime: Int,
     @ColumnInfo("tags")
@@ -26,5 +26,5 @@ data class FavoriteMovie(
     @ColumnInfo("rating")
     val rating: Float,
     @ColumnInfo("poster_path")
-    val poster_path: String,
+    val posterPath: String,
 )

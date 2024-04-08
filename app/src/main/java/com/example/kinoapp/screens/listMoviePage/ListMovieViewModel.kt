@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.kinoapp.Screens
-import com.example.kinoapp.network.models.SimpleMovieInfo
+import com.example.kinoapp.network.models.SimpleMovieInfoDomain
 import com.example.kinoapp.network.repository.MovieRepository
 import com.example.kinoapp.presentation.BaseViewModel
 import com.example.kinoapp.utils.Constants
@@ -23,8 +23,8 @@ class ListMovieViewModel @Inject constructor(
 
 ) : BaseViewModel() {
     private val _movieListLiveData by lazy {
-        MutableLiveData<List<SimpleMovieInfo>>() }
-    val movieListLiveData: LiveData<List<SimpleMovieInfo>>
+        MutableLiveData<List<SimpleMovieInfoDomain>>() }
+    val movieListLiveData: LiveData<List<SimpleMovieInfoDomain>>
         get() = _movieListLiveData
 
     private val _isNetwork by lazy {
