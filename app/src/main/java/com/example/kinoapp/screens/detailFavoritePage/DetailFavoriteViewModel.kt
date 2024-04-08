@@ -4,8 +4,8 @@ import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.kinoapp.Screens
-import com.example.kinoapp.localDb.Repository.AppDatabaseRepository
 import com.example.kinoapp.localDb.entitys.FavoriteMovie
+import com.example.kinoapp.localDb.repository.AppDatabaseRepository
 import com.example.kinoapp.presentation.BaseViewModel
 import com.example.kinoapp.utils.Constants
 import com.github.terrakok.cicerone.Router
@@ -27,13 +27,17 @@ class DetailFavoriteViewModel @Inject constructor(
     val isLoading: LiveData<Boolean>
         get() = _isLoading
 
-    val isFavorite: MutableLiveData<Boolean> = MutableLiveData(false)
+    private val _isFavorite: MutableLiveData<Boolean> = MutableLiveData(false)
+    val isFavorite: LiveData<Boolean>
+        get() = _isFavorite
+
+
     val username=sharedPreferences.getString(Constants.USERNAME,"").orEmpty()
 
     fun getMovieDetail(id: Int) {
         val movieItemByID = databaseRepository.getFavoriteById(id = id, userName = username)
-        isFavorite.value = movieItemByID.isNotEmpty()
-        _movieInfoLiveData.value=movieItemByID[0]
+        _isFavorite.value = movieItemByID!=null
+        _movieInfoLiveData.value=movieItemByID
         _isLoading.value=false
     }
 
@@ -43,7 +47,7 @@ class DetailFavoriteViewModel @Inject constructor(
 
     fun addOrDeletInFavorit(movieItem: FavoriteMovie) {
 
-        if (isFavorite.value == false) {
+        if (_isFavorite.value == false) {
             var genreLine:String=""
             movieItem.genres.forEach{genre ->
                 genreLine="$genreLine $genre"
@@ -63,9 +67,9 @@ class DetailFavoriteViewModel @Inject constructor(
                     poster_path = movieItem.poster_path
                 )
             databaseRepository.addInFavorite(movie)
-            isFavorite.value = true
+            _isFavorite.value = true
         } else {
-            isFavorite.value = false
+            _isFavorite.value = false
             databaseRepository.removeFavorite(id = movieItem.id, userName = username)
 
         }

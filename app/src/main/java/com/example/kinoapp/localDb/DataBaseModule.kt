@@ -2,8 +2,8 @@ package com.example.kinoapp.localDb
 
 import android.content.Context
 import androidx.room.Room
-import com.example.kinoapp.localDb.Repository.AppDatabaseRepository
-import com.example.kinoapp.localDb.Repository.AppDatabaseRepositoryImpl
+import com.example.kinoapp.localDb.repository.AppDatabaseRepository
+import com.example.kinoapp.localDb.repository.AppDatabaseRepositoryImpl
 import com.example.kinoapp.utils.ApplicationContext
 import dagger.Module
 import dagger.Provides

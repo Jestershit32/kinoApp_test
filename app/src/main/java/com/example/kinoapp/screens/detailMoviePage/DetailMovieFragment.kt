@@ -8,6 +8,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import coil.load
 import com.example.kinoapp.R
 import com.example.kinoapp.databinding.FragmentMoviePageBinding
+import com.example.kinoapp.utils.Constants
 import com.example.kinoapp.utils.ViewModelFactory
 import dagger.android.support.DaggerFragment
 import kotlinx.coroutines.FlowPreview
@@ -39,7 +40,14 @@ class DetailMovieFragment : DaggerFragment(R.layout.fragment_movie_page) {
             }
         }
 
+        viewModel.isNetwork.observe(viewLifecycleOwner) { isTrue ->
+            if (!isTrue) {
+                binding.modal.visibility=View.VISIBLE
+            }
+        }
+
         binding.buttonBack.setOnClickListener { viewModel.backInMovieList() }
+        binding.buttonBackModul.setOnClickListener{ viewModel.backInMovieList() }
 
         viewModel.movieInfoLiveData.observe(viewLifecycleOwner) { item ->
             with(binding) {
@@ -60,7 +68,7 @@ class DetailMovieFragment : DaggerFragment(R.layout.fragment_movie_page) {
                 if (item.tagline.isEmpty()) tvTagsLabel.visibility = View.INVISIBLE
                 tvTags.text = item.tagline
 
-                ivPoster.load("https://media.themoviedb.org/t/p/w220_and_h330_face${item.poster_path}") {
+                ivPoster.load(Constants.HEAD_IMG_URL+item.poster_path) {
                     crossfade(true)
                 }
             }

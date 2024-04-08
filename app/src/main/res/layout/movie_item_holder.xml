@@ -24,7 +24,6 @@
                 android:layout_width="160dp"
                 android:layout_height="240dp"
                 android:background="@color/white"
-                android:contentDescription="images"
                 android:elevation="10dp" />
 
             <TextView
@@ -32,18 +31,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginTop="15dp"
-                android:text="Название фильма"
+                tools:text="@string/movie_name"
                 android:textColor="@color/white"
-                android:textSize="20dp" />
+                android:textSize="20sp"/>
 
             <TextView
                 android:id="@+id/movie_description"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginTop="15dp"
-                android:text="Описание Фильма"
-                android:textColor="@color/white"
-                tools:text="dfs;kjghdslfkjghljerbglewrhbguldfbsrlghwerougherlw" />
+                tools:text="@string/movie_description"
+                android:textColor="@color/white"/>
 
             <LinearLayout
                 android:layout_marginTop="20dp"
@@ -60,7 +58,7 @@
                     android:layout_marginEnd="10dp"
                     android:text="@string/rating"
                     android:textColor="@color/white"
-                    android:textSize="25dp" />
+                    android:textSize="25sp" />
 
                 <TextView
                     android:id="@+id/movie_rating"
@@ -68,8 +66,8 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="end"
                     android:textColor="@color/white"
-                    android:textSize="25dp"
-                    tools:text="Rating:24" />
+                    android:textSize="25sp"
+                    tools:text="2341,342" />
             </LinearLayout>
 
         </LinearLayout>

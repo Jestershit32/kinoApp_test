@@ -8,6 +8,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import coil.load
 import com.example.kinoapp.R
 import com.example.kinoapp.databinding.FragmentMovieFavoritePageBinding
+import com.example.kinoapp.utils.Constants
 import com.example.kinoapp.utils.ViewModelFactory
 import dagger.android.support.DaggerFragment
 import kotlinx.coroutines.FlowPreview
@@ -50,7 +51,7 @@ class DetailFavoriteFragment : DaggerFragment(R.layout.fragment_movie_favorite_p
                 tvGenres.text = item.genres
                 if(item.tags.isEmpty()) tvTagsLabel.visibility=View.INVISIBLE
                 tvTags.text = item.tags
-                ivPoster.load("https://media.themoviedb.org/t/p/w220_and_h330_face${item.poster_path}"){
+                ivPoster.load(Constants.HEAD_IMG_URL+item.poster_path){
                     crossfade(true)
                 }
             }

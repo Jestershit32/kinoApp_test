@@ -9,6 +9,7 @@ import com.example.kinoapp.network.models.SimpleMovieInfo
 import com.example.kinoapp.network.models.SimpleMovieInfoById
 import com.example.kinoapp.utils.Constants
 import com.example.kinoapp.utils.StringProvider
+import com.example.kinoapp.utils.exception.AuthException
 import javax.inject.Inject
 
 class MovieRepositoryImpl @Inject constructor(
@@ -16,10 +17,6 @@ class MovieRepositoryImpl @Inject constructor(
     private val sharedPreferences: SharedPreferences,
     private val stringProvider: StringProvider
 ) : MovieRepository {
-
-    private val TOKEN =
-        Constants.TOKEN
-
     override suspend fun searchMovie(
         page: Int,
     ): List<SimpleMovieInfo> {
@@ -27,7 +24,7 @@ class MovieRepositoryImpl @Inject constructor(
             sort_by = "popular",
             language = "ru",
             page = page,
-            token = TOKEN
+            token = Constants.TOKEN
         )
         if (!response.isSuccessful)
             throw Exception(response.errorBody()?.string())
@@ -40,7 +37,7 @@ class MovieRepositoryImpl @Inject constructor(
         val response = networkService.getDetailMovieById(
             movie_id = movie_id,
             language = "ru",
-            token = TOKEN
+            token = Constants.TOKEN
         )
         if (!response.isSuccessful) throw Exception(response.errorBody()?.string())
         return response.body() ?: throw Exception(stringProvider.getString( R.string.exception_network))
@@ -50,26 +47,28 @@ class MovieRepositoryImpl @Inject constructor(
         login: String,
         password: String
     ): ResponseBody {
-        val requestToken = networkService.getRequestToken(token = TOKEN)
+        val requestToken = networkService.getRequestToken(token = Constants.TOKEN)
 
-        if (!requestToken.isSuccessful) throw Exception(requestToken.errorBody()?.string())
+        if (!requestToken.isSuccessful) throw AuthException(stringProvider.getString(R.string.exception_network))
         val requestTokenNotNull = requestToken.body()?.request_token
-            ?: throw Exception()
+            ?: throw AuthException(stringProvider.getString(R.string.exception_network))
+
         val postBody = PostBodyforLogin(
             username = login,
             password = password,
             request_token = requestTokenNotNull
         )
-        val response = networkService.confirmRequestTokenByLogin(token = TOKEN, postBody = postBody)
-        if (!response.isSuccessful) throw Exception(stringProvider.getString(R.string.exception_message_login_password))
+        val response = networkService.confirmRequestTokenByLogin(token = Constants.TOKEN, postBody = postBody)
+
+        if (!response.isSuccessful) throw AuthException(stringProvider.getString(R.string.exception_message_login_password))
+
         sharedPreferences.edit()
             .putString(Constants.REQUEST_TOKEN, response.body()?.request_token)
             .putString(Constants.USERNAME, login)
             .apply()
 
-
         return response.body()
-            ?: throw Exception(stringProvider.getString(R.string.exception_message_login_password))
+            ?: throw AuthException(stringProvider.getString(R.string.exception_message_login_password))
 
     }
 

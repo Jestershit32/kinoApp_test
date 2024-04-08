@@ -5,8 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.kinoapp.Screens
-import com.example.kinoapp.localDb.Repository.AppDatabaseRepository
 import com.example.kinoapp.localDb.entitys.FavoriteMovie
+import com.example.kinoapp.localDb.repository.AppDatabaseRepository
 import com.example.kinoapp.network.models.SimpleMovieInfoById
 import com.example.kinoapp.network.repository.MovieRepository
 import com.example.kinoapp.presentation.BaseViewModel
@@ -37,26 +37,32 @@ class DetailMovieViewModel @Inject constructor(
         get() = _isLoading
 
 
+    private val _isNetwork by lazy {
+        MutableLiveData<Boolean>()
+    }
+    val isNetwork: LiveData<Boolean>
+        get() = _isNetwork
 
 
     private val _isFavorite: MutableLiveData<Boolean> = MutableLiveData(false)
-    val isFavorite: MutableLiveData<Boolean>
+    val isFavorite: LiveData<Boolean>
         get() = _isFavorite
 
 
     fun getMovieDetail(id: Int) {
         val movieItemByID = databaseRepository.getFavoriteById(id = id, userName = userName)
-        isFavorite.value = movieItemByID.isNotEmpty()
+        _isFavorite.value = movieItemByID != null
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val result = movieRepository.searchMovieById(movie_id = id)
                 withContext(Dispatchers.Main) {
                     _movieInfoLiveData.postValue(result)
-                    _isLoading.value=false
+                    _isLoading.value = false
+                    _isNetwork.value = true
                 }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
-                    router.backTo(Screens.movieListPage())
+                    _isNetwork.value = false
                 }
             }
         }

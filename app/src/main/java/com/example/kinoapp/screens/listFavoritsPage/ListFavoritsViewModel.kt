@@ -4,7 +4,7 @@ import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.kinoapp.Screens
-import com.example.kinoapp.localDb.Repository.AppDatabaseRepository
+import com.example.kinoapp.localDb.repository.AppDatabaseRepository
 import com.example.kinoapp.localDb.entitys.FavoriteMovie
 import com.example.kinoapp.presentation.BaseViewModel
 import com.example.kinoapp.utils.Constants

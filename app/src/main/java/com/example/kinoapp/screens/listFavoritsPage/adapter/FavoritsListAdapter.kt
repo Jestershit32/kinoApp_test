@@ -1,58 +1,58 @@
 package com.example.kinoapp.screens.listFavoritsPage.adapter
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.kinoapp.R
 import com.example.kinoapp.databinding.MovieItemHolderBinding
 import com.example.kinoapp.localDb.entitys.FavoriteMovie
+import com.example.kinoapp.utils.Constants
 
-class FavoritsListAdapter(
-    val onItemClick: (id:Int) -> Unit
-) :
-    RecyclerView.Adapter<FavoritsListAdapter.FavoritsViewHolder>() {
+class FavoritsListAdapter(val onItemClick: (id: Int) -> Unit) :
+    ListAdapter<FavoriteMovie, FavoritsListAdapter.ItemHolder>(ItemComparator()) {
 
-    private val movieList = ArrayList<FavoriteMovie>()
-
-    inner class FavoritsViewHolder(item: View) : RecyclerView.ViewHolder(item) {
-
-        val binding = MovieItemHolderBinding.bind(item)
-
+    inner class ItemHolder(private val binding: MovieItemHolderBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(item: FavoriteMovie) = with(binding) {
             movieName.text = item.title
             movieDescription.text = item.overview
             movieRating.text = item.rating.toString()
-            binding.imageView.load("https://media.themoviedb.org/t/p/w220_and_h330_face${item.poster_path}"){
+            binding.imageView.load(Constants.HEAD_IMG_URL + item.poster_path) {
                 crossfade(true)
             }
-            movieItemHolder.setOnClickListener {
+            binding.root.setOnClickListener {
                 onItemClick(item.id)
             }
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoritsViewHolder {
-        return FavoritsViewHolder(
-            LayoutInflater.from(parent.context).inflate(
-                R.layout.movie_item_holder, parent, false
+    class ItemComparator : DiffUtil.ItemCallback<FavoriteMovie>() {
+        override fun areItemsTheSame(oldItem: FavoriteMovie, newItem: FavoriteMovie): Boolean {
+            return oldItem == newItem
+        }
+
+        override fun areContentsTheSame(
+            oldItem: FavoriteMovie,
+            newItem: FavoriteMovie
+        ): Boolean {
+            return oldItem.id == newItem.id
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
+        return ItemHolder(
+            MovieItemHolderBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false,
             )
         )
     }
 
-    override fun getItemCount(): Int {
-        return movieList.size
+    override fun onBindViewHolder(holder: ItemHolder, position: Int) {
+        holder.bind(getItem(position))
     }
 
-    override fun onBindViewHolder(holder: FavoritsViewHolder, position: Int) {
-        holder.bind(movieList[position])
-    }
-
-    @SuppressLint("NotifyDataSetChanged")
-    fun addMovieList(list: List<FavoriteMovie>) {
-        movieList.addAll(list)
-        notifyDataSetChanged()
-    }
 }

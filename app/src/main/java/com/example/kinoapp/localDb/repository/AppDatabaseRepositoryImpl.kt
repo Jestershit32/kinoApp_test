@@ -1,4 +1,4 @@
-package com.example.kinoapp.localDb.Repository
+package com.example.kinoapp.localDb.repository
 
 
 import com.example.kinoapp.localDb.AppDatabase
@@ -16,8 +16,8 @@ class AppDatabaseRepositoryImpl @Inject constructor(
     override fun removeFavorite(id: Int, userName: String): Int =
         database.getDao().deleteFavoritMovieById(id, userName)
 
-    override fun getFavoriteById(id: Int, userName: String) =
-        database.getDao().getFavoritMovieById(id, userName)
+    override fun getFavoriteById(id: Int, userName: String): FavoriteMovie? =
+        database.getDao().getFavoritMovieById(id, userName).firstOrNull()
 
     override fun getAllFavoriteMovie(userName: String) =
         database.getDao().getAllFavoriteMovie(userName)

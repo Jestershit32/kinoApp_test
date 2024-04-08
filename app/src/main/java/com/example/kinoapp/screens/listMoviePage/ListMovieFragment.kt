@@ -18,7 +18,7 @@ class ListMovieFragment : DaggerFragment(R.layout.fragment_list_of_movie_page) {
     lateinit var viewModelFactory: ViewModelFactory
     private val viewModel by viewModels<ListMovieViewModel> { viewModelFactory }
     private val binding by viewBinding(FragmentListOfMoviePageBinding::bind)
-    private val adapter = MovieListAdapter { value -> viewModel.navigateToDetailMovie(value) }
+    private val adapter = MovieListAdapter { value ->  viewModel.navigateToDetailMovie(value) }
     @FlowPreview
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
@@ -36,11 +36,12 @@ class ListMovieFragment : DaggerFragment(R.layout.fragment_list_of_movie_page) {
         }
 
         viewModel.movieListLiveData.observe(viewLifecycleOwner) { list ->
-            adapter.addMovieList(list)
+            adapter.submitList(list)
         }
         viewModel.isNetwork.observe(viewLifecycleOwner) { isTrue ->
             if (!isTrue) {
                 binding.modal.visibility = View.VISIBLE
+                binding.loading.visibility=View.GONE
             } else {
                 binding.modal.visibility = View.GONE
             }

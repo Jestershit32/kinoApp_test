@@ -50,14 +50,14 @@ class ListMovieViewModel @Inject constructor(
             try {
                 val results = movieRepository.searchMovie(page = 1)
                 withContext(Dispatchers.Main) {
-                    _isNetwork.value = true
                     _movieListLiveData.postValue(results)
+                    _isNetwork.value = true
                     _isLoading.value=false
                 }
 
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
-                    _isNetwork.value = false
+                    if(_movieListLiveData.value == null)_isNetwork.value = false
                 }
             }
         }

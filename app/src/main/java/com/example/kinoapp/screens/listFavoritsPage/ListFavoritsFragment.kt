@@ -25,10 +25,6 @@ class ListFavoritsFragment : DaggerFragment(R.layout.fragment_list_of_favorites_
     @FlowPreview
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-
-
-
-
         viewModel.startInit()
         viewModel.isLoading.observe(viewLifecycleOwner){isTrue->
             if (!isTrue){
@@ -41,7 +37,7 @@ class ListFavoritsFragment : DaggerFragment(R.layout.fragment_list_of_favorites_
             viewModel.navigateToListMovie()
         }
         viewModel.movieListLiveData.observe(viewLifecycleOwner) { list ->
-            adapter.addMovieList(list)
+            adapter.submitList(list)
             if (list.isEmpty()) {
                 binding.modal.visibility = View.VISIBLE
             } else {

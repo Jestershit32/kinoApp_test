@@ -7,6 +7,41 @@
     android:padding="30px"
     tools:context=".screens.detailMoviePage.DetailMovieFragment">
     <LinearLayout
+        android:id="@+id/modal"
+        style="@style/InDarkShape"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="50dp"
+        android:layout_margin="20dp"
+        android:elevation="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:translationZ="15dp"
+        android:visibility="gone">
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="@string/popular_clear_list"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <Button
+            android:id="@+id/button_back_modul"
+            android:text="@string/back"
+            android:textSize="30sp"
+            android:layout_width="80pt"
+            android:layout_height="60dp"
+            android:layout_marginTop="40dp"
+            android:elevation="15dp"
+            android:background="@drawable/shape_rounded_light"/>
+    </LinearLayout>
+    <LinearLayout
         android:id="@+id/loading"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,7 +51,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:translationZ="20dp"
+        android:translationZ="10dp"
         android:visibility="visible"
         tools:visibility="gone">
         <TextView

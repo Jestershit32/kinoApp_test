@@ -10,11 +10,14 @@
     <string name="populars" translatable="false">Популярные</string>
     <string name="exit" translatable="false">Выйти</string>
     <string name="popular_clear_list" translatable="false">Не удается загрузить контент</string>
+    <string name="exception_network" translatable="false">Отсутствует соединение</string>
     <string name="minutes" translatable="false">минут</string>
     <string name="delete_from_favorites" translatable="false">Удалить из избранных</string>
     <string name="add_in_favorites" translatable="false">Добавить в избранных</string>
     <string name="exception_message_login_password" translatable="false">Неправильный логин или пароль</string>
-    <string name="exception_network" translatable="false">Нет связи с базой данных</string>
+    <string name="exception_network_db" translatable="false">Нет связи с базой данных</string>
     <string name="not_descripting" translatable="false">"Описание отсутствует"</string>
-    <string name="rating">Рейтинг:</string>
+    <string name="rating" translatable="false">Рейтинг:</string>
+    <string name="movie_name">Название фильма</string>
+    <string name="movie_description">Описание Фильма</string>
 </resources>
