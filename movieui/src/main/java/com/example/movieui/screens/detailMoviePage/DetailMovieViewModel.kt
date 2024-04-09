@@ -71,8 +71,7 @@ class DetailMovieViewModel @Inject constructor(
         router.backTo(Screens.movieListPage())
     }
 
-    fun addOrDeleteInFavorit(movieItem: SimpleMovieInfoByIdDomain) {
-
+    fun addOrDeleteInFavorite(movieItem: SimpleMovieInfoByIdDomain) {
         if (_isFavorite.value == false) {
             val movie = FavoriteMovie(
                 idRoom = null,

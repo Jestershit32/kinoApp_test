@@ -51,7 +51,7 @@ class DetailMovieFragment : DaggerFragment(R.layout.fragment_movie_page) {
         viewModel.movieInfoLiveData.observe(viewLifecycleOwner) { item ->
             with(binding) {
                 buttonAddFavorit.setOnClickListener {
-                    viewModel.addOrDeleteInFavorit(movieItem = item)
+                    viewModel.addOrDeleteInFavorite(movieItem = item)
                 }
 
                 tvTitle.text = item.title
