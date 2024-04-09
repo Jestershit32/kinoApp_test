@@ -1,32 +1,34 @@
-package com.example.kinoapp.domain
+package com.example.movieui.domain
 
 import android.content.SharedPreferences
 import com.example.core.utils.Constants
 import com.example.core.utils.StringProvider
 import com.example.core.utils.exception.AuthException
-import com.example.kinoapp.R
 import com.example.networking.NetworkService
-import com.example.networking.repository.MovieRepository
+import com.example.networking.R
+import com.example.networking.domain.models.SimpleMovieInfoByIdDomain
+import com.example.networking.domain.models.SimpleMovieInfoDomain
 import com.example.networking.models.PostBodyforLogin
 import com.example.networking.models.ResponseBody
-import com.example.networking.models.SimpleMovieInfoByIdDomain
-import com.example.networking.models.SimpleMovieInfoDomain
-import com.example.networking.models.toDomain
+import com.example.networking.repository.MovieRepository
 import javax.inject.Inject
 
+private const val LANGUAGE="ru"
+private const val POPULAR="popular"
 class MovieRepositoryImpl @Inject constructor(
     private val networkService: NetworkService,
     private val sharedPreferences: SharedPreferences,
     private val stringProvider: StringProvider
 ) : MovieRepository {
+
     override suspend fun searchMovie(
         page: Int,
     ): List<SimpleMovieInfoDomain> {
         val response = networkService.getMovies(
-            sort_by = "popular",
-            language = "ru",
+            sort_by = POPULAR,
+            language = LANGUAGE,
             page = page,
-            token = Constants.TOKEN
+            token = Constants.TOKEN,
         )
         if (!response.isSuccessful)
             throw Exception(response.errorBody()?.string())
@@ -38,11 +40,11 @@ class MovieRepositoryImpl @Inject constructor(
     ): SimpleMovieInfoByIdDomain {
         val response = networkService.getDetailMovieById(
             movie_id = movieId,
-            language = "ru",
-            token = Constants.TOKEN
+            language = LANGUAGE,
+            token = Constants.TOKEN,
         )
         if (!response.isSuccessful) throw Exception(response.errorBody()?.string())
-        return response.body()?.toDomain() ?: throw Exception(stringProvider.getString( R.string.exception_network))
+        return response.body()?.toDomain() ?: throw Exception(stringProvider.getString(R.string.exception_network))
     }
 
     override suspend fun authentication(

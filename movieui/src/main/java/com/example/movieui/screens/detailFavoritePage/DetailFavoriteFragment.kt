@@ -42,7 +42,7 @@ class DetailFavoriteFragment : DaggerFragment(R.layout.fragment_movie_favorite_p
             with(binding) {
                 buttonBack.setOnClickListener { viewModel.backToFavoritesPage() }
                 buttonAddFavorit.setOnClickListener {
-                    viewModel.addOrDeleteInFavorit(movieItem = item)
+                    viewModel.addOrDeleteInFavorite(movieItem = item)
                 }
                 tvTitle.text = item.title
                 tvMovieDescription.text = item.overview.ifEmpty { getString(R.string.not_descripting) }

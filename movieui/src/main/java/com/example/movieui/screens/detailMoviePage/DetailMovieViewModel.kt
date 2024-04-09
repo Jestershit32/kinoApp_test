@@ -6,9 +6,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.core.presentation.BaseViewModel
 import com.example.core.utils.Constants
-import com.example.networking.models.SimpleMovieInfoByIdDomain
-import com.example.networking.repository.MovieRepository
 import com.example.movieui.Screens
+import com.example.networking.domain.models.SimpleMovieInfoByIdDomain
+import com.example.networking.repository.MovieRepository
 import com.example.storage.entitys.FavoriteMovie
 import com.example.storage.repository.AppDatabaseRepository
 import com.github.terrakok.cicerone.Router
@@ -49,12 +49,12 @@ class DetailMovieViewModel @Inject constructor(
 
 
     fun getMovieDetail(id: Int) {
-        val movieItemByID = databaseRepository.getFavoriteById(id = id, userName = userName)
-        _isFavorite.value = movieItemByID != null
         viewModelScope.launch(Dispatchers.IO) {
+            val movieItemByID = databaseRepository.getFavoriteById(id = id, userName = userName)
             try {
                 val result = movieRepository.searchMovieById(movieId = id)
                 withContext(Dispatchers.Main) {
+                    _isFavorite.value = movieItemByID != null
                     _movieInfoLiveData.postValue(result)
                     _isLoading.value = false
                     _isNetwork.value = true
@@ -87,14 +87,21 @@ class DetailMovieViewModel @Inject constructor(
                     tags = movieItem.tagline,
                     posterPath = movieItem.posterPath
                 )
-            databaseRepository.addInFavorite(movie)
-            _isFavorite.value = true
+            viewModelScope.launch(Dispatchers.IO) {
+                databaseRepository.addInFavorite(movie)
+                withContext(Dispatchers.Main) {
+                    _isFavorite.value = true
+                }
+            }
         } else {
-            _isFavorite.value = false
-            databaseRepository.removeFavorite(id = movieItem.id, userName = userName)
+            viewModelScope.launch(Dispatchers.IO) {
+                databaseRepository.removeFavorite(id = movieItem.id, userName = userName)
+                withContext(Dispatchers.Main) {
+                    _isFavorite.value = false
+                }
+
+            }
         }
-
-
     }
 
 }

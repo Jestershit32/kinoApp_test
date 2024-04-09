@@ -1,8 +1,8 @@
 package com.example.kinoapp.dagger
 
-import com.example.kinoapp.App
 import com.example.core.utils.BaseModule
-import com.example.kinoapp.domain.MoviesModule
+import com.example.kinoapp.App
+import com.example.movieui.di.RepositoriesModule
 import com.example.navigation.NavigationModule
 import com.example.networking.NetworkModule
 import com.example.storage.DataBaseModule
@@ -20,7 +20,7 @@ import javax.inject.Singleton
         NetworkModule::class,
         NavigationModule::class,
         BaseModule::class,
-        MoviesModule::class
+        RepositoriesModule::class,
     ]
 )
 interface AppComponent : AndroidInjector<App> {

@@ -9,5 +9,5 @@ import com.example.storage.entitys.FavoriteMovie
 @Database(entities = [FavoriteMovie::class], version = 3)
 @TypeConverters(ListStringConverter::class)
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun getDao(): Dao
+    abstract fun getDao():FavoriteMovieDao
 }

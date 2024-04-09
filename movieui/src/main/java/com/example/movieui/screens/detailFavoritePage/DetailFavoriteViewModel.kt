@@ -3,6 +3,7 @@ package com.example.movieui.screens.detailFavoritePage
 import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 
 import com.example.core.presentation.BaseViewModel
 import com.example.core.utils.Constants
@@ -10,6 +11,9 @@ import com.example.movieui.Screens
 import com.example.storage.entitys.FavoriteMovie
 import com.example.storage.repository.AppDatabaseRepository
 import com.github.terrakok.cicerone.Router
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class DetailFavoriteViewModel @Inject constructor(
@@ -32,45 +36,52 @@ class DetailFavoriteViewModel @Inject constructor(
     val isFavorite: LiveData<Boolean>
         get() = _isFavorite
 
-
     val username = sharedPreferences.getString(Constants.USERNAME, "").orEmpty()
 
     fun getMovieDetail(id: Int) {
-        val movieItemByID = databaseRepository.getFavoriteById(id = id, userName = username)
-        _isFavorite.value = movieItemByID != null
-        _movieInfoLiveData.value = movieItemByID
-        _isLoading.value = false
+        viewModelScope.launch(Dispatchers.IO) {
+            val movieItemByID = databaseRepository.getFavoriteById(id = id, userName = username)
+            withContext(Dispatchers.Main) {
+                _isFavorite.value = movieItemByID != null
+                _movieInfoLiveData.value = movieItemByID
+                _isLoading.value = false
+            }
+        }
     }
 
     fun backToFavoritesPage() {
         router.navigateTo(Screens.favoritesPage())
     }
 
-    fun addOrDeleteInFavorit(movieItem: FavoriteMovie) {
+    fun addOrDeleteInFavorite(movieItem: FavoriteMovie) {
 
         if (_isFavorite.value == false) {
-            val movie =
-                FavoriteMovie(
-                    idRoom = null,
-                    userName = username,
-                    title = movieItem.title,
-                    id = movieItem.id,
-                    overview = movieItem.overview,
-                    rating = movieItem.rating,
-                    genres = movieItem.genres,
-                    runtime = movieItem.runtime,
-                    tags = movieItem.tags,
-                    posterPath = movieItem.posterPath,
-                )
-            databaseRepository.addInFavorite(movie)
-            _isFavorite.value = true
+            val movie = FavoriteMovie(
+                idRoom = null,
+                userName = username,
+                title = movieItem.title,
+                id = movieItem.id,
+                overview = movieItem.overview,
+                rating = movieItem.rating,
+                genres = movieItem.genres,
+                runtime = movieItem.runtime,
+                tags = movieItem.tags,
+                posterPath = movieItem.posterPath,
+            )
+            viewModelScope.launch(Dispatchers.IO) {
+                databaseRepository.addInFavorite(movie)
+                withContext(Dispatchers.Main) {
+                    _isFavorite.value = true
+                }
+            }
         } else {
-            _isFavorite.value = false
-            databaseRepository.removeFavorite(id = movieItem.id, userName = username)
-
+            viewModelScope.launch(Dispatchers.IO) {
+                databaseRepository.removeFavorite(id = movieItem.id, userName = username)
+                withContext(Dispatchers.Main) {
+                    _isFavorite.value = false
+                }
+            }
         }
-
-
     }
 
 }

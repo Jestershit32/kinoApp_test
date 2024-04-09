@@ -37,22 +37,3 @@ data class SimpleMovieInfo(
 ) : Parcelable
 
 
-data class SimpleMovieInfoDomain(
-    val id: Int,
-    val overview: String,
-    val popularity: Float,
-    val posterPath: String,
-    val title: String,
-)
-
-fun List<SimpleMovieInfo>.toDomain(): List<SimpleMovieInfoDomain> {
-    return this.map { item ->
-        SimpleMovieInfoDomain(
-            id = item.id,
-            overview = item.overview,
-            popularity = item.popularity,
-            posterPath = item.posterPath,
-            title = item.title,
-        )
-    }
-}

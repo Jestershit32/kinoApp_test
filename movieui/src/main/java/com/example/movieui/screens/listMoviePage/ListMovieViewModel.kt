@@ -6,9 +6,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.core.presentation.BaseViewModel
 import com.example.core.utils.Constants
-import com.example.networking.models.SimpleMovieInfoDomain
-import com.example.networking.repository.MovieRepository
 import com.example.movieui.Screens
+import com.example.networking.domain.models.SimpleMovieInfoDomain
+import com.example.networking.repository.MovieRepository
 import com.github.terrakok.cicerone.Router
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

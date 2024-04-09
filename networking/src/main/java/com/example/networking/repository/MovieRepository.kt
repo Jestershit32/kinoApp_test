@@ -1,8 +1,8 @@
 package com.example.networking.repository
 
+import com.example.networking.domain.models.SimpleMovieInfoByIdDomain
+import com.example.networking.domain.models.SimpleMovieInfoDomain
 import com.example.networking.models.ResponseBody
-import com.example.networking.models.SimpleMovieInfoByIdDomain
-import com.example.networking.models.SimpleMovieInfoDomain
 
 interface MovieRepository {
     suspend fun searchMovie(

@@ -24,4 +24,6 @@ class NetworkModule {
     fun provideNetworkService(retrofit: Retrofit): NetworkService {
         return retrofit.create(NetworkService::class.java)
     }
+
+
 }

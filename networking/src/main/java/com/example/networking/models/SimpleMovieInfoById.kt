@@ -106,36 +106,6 @@ data class SimpleMovieInfoById(
 ) : Parcelable
 
 
-data class SimpleMovieInfoByIdDomain(
-    val genres: List<String>,
-    val id: Int,
-    val overview: String,
-    val popularity: Float,
-    val posterPath: String,
-    val runtime: Int,
-    val tagline: String,
-    val title: String,
-    val voteAverage: Float,
-    val voteCount: Int,
-)
 
-fun SimpleMovieInfoById.toDomain(): SimpleMovieInfoByIdDomain {
-    val genreListString = mutableListOf<String>()
-    this.genres.forEach { item ->
-        genreListString.add(item.name)
-    }
-    return SimpleMovieInfoByIdDomain(
-        id = this.id,
-        genres = genreListString,
-        overview = this.overview,
-        popularity = this.popularity,
-        posterPath = this.posterPath,
-        runtime = this.runtime,
-        tagline = this.tagline,
-        title = this.title,
-        voteAverage = this.voteAverage,
-        voteCount = this.voteCount,
-    )
-}
 
 

@@ -58,7 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:text="@string/Loading"/>
+            android:text="@string/loading"/>
     </LinearLayout>
     <Button
         android:id="@+id/button_back"
@@ -134,7 +134,7 @@
         android:id="@+id/tv_rating_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/Rating"
+        android:text="@string/rating"
         app:layout_constraintStart_toStartOf="@+id/tv_genres"
         app:layout_constraintTop_toBottomOf="@+id/tv_genres" />
 

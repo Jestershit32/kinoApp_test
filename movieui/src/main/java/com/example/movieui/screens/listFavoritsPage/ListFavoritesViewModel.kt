@@ -3,12 +3,16 @@ package com.example.movieui.screens.listFavoritsPage
 import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.core.presentation.BaseViewModel
 import com.example.core.utils.Constants
 import com.example.movieui.Screens
 import com.example.storage.entitys.FavoriteMovie
 import com.example.storage.repository.AppDatabaseRepository
 import com.github.terrakok.cicerone.Router
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 
@@ -36,13 +40,17 @@ class ListFavoritesViewModel @Inject constructor(
     }
 
     fun startInit() {
-        val favoriteMovie = databaseRepository.getAllFavoriteMovie(
-            sharedPreferences.getString(
-                Constants.USERNAME, null
-            ) ?: ""
-        )
-        _movieListLiveData.postValue(favoriteMovie)
-        _isLoading.value = false
+        viewModelScope.launch(Dispatchers.IO) {
+            val favoriteMovie = databaseRepository.getAllFavoriteMovie(
+                sharedPreferences.getString(
+                    Constants.USERNAME, null
+                ) ?: ""
+            )
+            withContext(Dispatchers.Main) {
+                _movieListLiveData.postValue(favoriteMovie)
+                _isLoading.value = false
+            }
+        }
     }
 }
 

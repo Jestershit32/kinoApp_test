@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.core.utils.Constants
-import com.example.networking.models.SimpleMovieInfoDomain
 import com.example.movieui.databinding.MovieItemHolderBinding
+import com.example.networking.domain.models.SimpleMovieInfoDomain
 
 class MovieListAdapter(val onItemClick: (id: Int) -> Unit) :
     ListAdapter<SimpleMovieInfoDomain, MovieListAdapter.ItemHolder>(ItemComparator()) {
@@ -33,14 +33,14 @@ class MovieListAdapter(val onItemClick: (id: Int) -> Unit) :
             oldItem: SimpleMovieInfoDomain,
             newItem: SimpleMovieInfoDomain
         ): Boolean {
-            return oldItem == newItem
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(
             oldItem: SimpleMovieInfoDomain,
             newItem: SimpleMovieInfoDomain
         ): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem == newItem
         }
     }
 
