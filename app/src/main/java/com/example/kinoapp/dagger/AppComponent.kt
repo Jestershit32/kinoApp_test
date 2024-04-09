@@ -1,10 +1,11 @@
 package com.example.kinoapp.dagger
 
+import com.example.core.utils.BaseModule
 import com.example.kinoapp.App
-import com.example.kinoapp.NavigationModule
-import com.example.kinoapp.localDb.DataBaseModule
-import com.example.kinoapp.network.NetworkModule
-import com.example.kinoapp.utils.BaseModule
+import com.example.movieui.di.RepositoriesModule
+import com.example.navigation.NavigationModule
+import com.example.networking.NetworkModule
+import com.example.storage.DataBaseModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -18,7 +19,8 @@ import javax.inject.Singleton
         ActivitiesModule::class,
         NetworkModule::class,
         NavigationModule::class,
-        BaseModule::class
+        BaseModule::class,
+        RepositoriesModule::class,
     ]
 )
 interface AppComponent : AndroidInjector<App> {

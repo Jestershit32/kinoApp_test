@@ -5,6 +5,18 @@
       <entry key="app">
         <State />
       </entry>
+      <entry key="app.networking">
+        <State />
+      </entry>
+      <entry key="movieui">
+        <State />
+      </entry>
+      <entry key="navigation">
+        <State />
+      </entry>
+      <entry key="storage">
+        <State />
+      </entry>
     </value>
   </component>
 </project>

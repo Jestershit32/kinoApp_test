@@ -1,0 +1,6 @@
+<resources>
+    <string name="exception_message_login_password" translatable="false">Неправильный логин или пароль</string>
+    <string name="exception_network_db" translatable="false">Нет связи с базой данных</string>
+    <string name="exception_network" translatable="false">Отсутствует соединение</string>
+
+</resources>

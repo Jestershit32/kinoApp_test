@@ -3,8 +3,8 @@ package com.example.kinoapp.dagger
 import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import com.example.kinoapp.App
-import com.example.kinoapp.utils.ApplicationContext
-import com.example.kinoapp.utils.ViewModelFactory
+import com.example.core.utils.ApplicationContext
+import com.example.core.utils.ViewModelFactory
 import dagger.Binds
 import dagger.Module
 

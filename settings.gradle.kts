@@ -21,4 +21,8 @@ dependencyResolutionManagement {
 
 rootProject.name = "kinoApp"
 include(":app")
- 
+include(":networking")
+include(":core")
+include(":navigation")
+include(":movieui")
+include(":storage")
