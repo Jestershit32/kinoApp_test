@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="30dp"
     tools:context="com.example.movieui.screens.detailMoviePage.DetailMovieFragment">
     <LinearLayout
         android:id="@+id/modal"
@@ -61,8 +60,10 @@
             android:text="@string/loading"/>
     </LinearLayout>
     <Button
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
         android:id="@+id/button_back"
-        android:layout_width="80pt"
+        android:layout_width="160dp"
         android:layout_height="60dp"
         android:text="@string/back"
         app:layout_constraintBottom_toBottomOf="@+id/button_add_favorit"
@@ -70,13 +71,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
         android:id="@+id/button_add_favorit"
+        android:layout_width="160dp"
         android:layout_height="60dp"
-        android:layout_width="80pt"
         android:text="@string/add_in_favorites"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     <ImageView
+        android:layout_marginStart="20dp"
+
         android:id="@+id/iv_poster"
         android:layout_width="200dp"
         android:layout_height="300dp"
@@ -97,12 +102,15 @@
         tools:text="Кунгфу панда 4" />
 
     <TextView
+
         android:layout_marginTop="20dp"
         android:id="@+id/tv_movie_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="15dp"
         android:textSize="16sp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_tags"
