@@ -1,29 +1,6 @@
 <resources>
-    <string name="app_name" translatable="false">Поиск фильмов</string>
-    <string name="login_page_title" translatable="false">Авторизация</string>
-    <string name="password_text" translatable="false">Пороль</string>
-    <string name="login_text" translatable="false">Логин</string>
-    <string name="login_button" translatable="false">Войти</string>
-    <string name="favorit_clear_list_message" translatable="false">К сожалению вы ничего не добавили в список Избранного</string>
-    <string name="back" translatable="false">Назад</string>
-    <string name="favorites" translatable="false">Избранные</string>
-    <string name="populars" translatable="false">Популярные</string>
-    <string name="exit" translatable="false">Выйти</string>
-    <string name="popular_clear_list" translatable="false">Не удается загрузить контент</string>
-    <string name="exception_network" translatable="false">Отсутствует соединение</string>
-    <string name="minutes" translatable="false">минут</string>
-    <string name="delete_from_favorites" translatable="false">Удалить из избранных</string>
-    <string name="add_in_favorites" translatable="false">Добавить в избранных</string>
     <string name="exception_message_login_password" translatable="false">Неправильный логин или пароль</string>
     <string name="exception_network_db" translatable="false">Нет связи с базой данных</string>
-    <string name="not_descripting" translatable="false">"Описание отсутствует"</string>
-    <string name="rating" translatable="false">Рейтинг:</string>
-    <string name="movie_name">Название фильма</string>
-    <string name="movie_description">Описание Фильма</string>
-    <string name="Loading">Загрузка</string>
-    <string name="genries_label">Жанры</string>
-    <string name="Rating">Рейтинг</string>
-    <string name="time">Время</string>
-    <string name="tags">Теги</string>
-    <string name="poster">poster</string>
+    <string name="exception_network" translatable="false">Отсутствует соединение</string>
+
 </resources>
