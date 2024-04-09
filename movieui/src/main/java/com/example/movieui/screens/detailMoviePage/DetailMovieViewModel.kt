@@ -50,8 +50,8 @@ class DetailMovieViewModel @Inject constructor(
 
     fun getMovieDetail(id: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            val movieItemByID = databaseRepository.getFavoriteById(id = id, userName = userName)
             try {
+                val movieItemByID = databaseRepository.getFavoriteById(id = id, userName = userName)
                 val result = movieRepository.searchMovieById(movieId = id)
                 withContext(Dispatchers.Main) {
                     _isFavorite.value = movieItemByID != null
@@ -72,10 +72,10 @@ class DetailMovieViewModel @Inject constructor(
         router.backTo(Screens.movieListPage())
     }
 
-    fun addOrDeletInFavorit(movieItem: SimpleMovieInfoByIdDomain) {
-        if (_isFavorite.value == false) {
-            val movie =
-                FavoriteMovie(
+    fun addOrDeleteInFavorit(movieItem: SimpleMovieInfoByIdDomain) {
+        try {
+            if (_isFavorite.value == false) {
+                val movie = FavoriteMovie(
                     idRoom = null,
                     userName = userName,
                     title = movieItem.title,
@@ -87,20 +87,23 @@ class DetailMovieViewModel @Inject constructor(
                     tags = movieItem.tagline,
                     posterPath = movieItem.posterPath
                 )
-            viewModelScope.launch(Dispatchers.IO) {
-                databaseRepository.addInFavorite(movie)
-                withContext(Dispatchers.Main) {
-                    _isFavorite.value = true
+                viewModelScope.launch(Dispatchers.IO) {
+                    databaseRepository.addInFavorite(movie)
+                    withContext(Dispatchers.Main) {
+                        _isFavorite.value = true
+                    }
                 }
-            }
-        } else {
-            viewModelScope.launch(Dispatchers.IO) {
-                databaseRepository.removeFavorite(id = movieItem.id, userName = userName)
-                withContext(Dispatchers.Main) {
-                    _isFavorite.value = false
-                }
+            } else {
+                viewModelScope.launch(Dispatchers.IO) {
+                    databaseRepository.removeFavorite(id = movieItem.id, userName = userName)
+                    withContext(Dispatchers.Main) {
+                        _isFavorite.value = false
+                    }
 
+                }
             }
+        } catch (e: Exception) {
+            _isNetwork.value = false
         }
     }
 

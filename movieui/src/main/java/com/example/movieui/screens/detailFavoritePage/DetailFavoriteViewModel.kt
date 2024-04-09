@@ -36,16 +36,27 @@ class DetailFavoriteViewModel @Inject constructor(
     val isFavorite: LiveData<Boolean>
         get() = _isFavorite
 
+    private val _isNetwork by lazy {
+        MutableLiveData<Boolean>()
+    }
+    val isNetwork: LiveData<Boolean>
+        get() = _isNetwork
+
     val username = sharedPreferences.getString(Constants.USERNAME, "").orEmpty()
 
     fun getMovieDetail(id: Int) {
-        viewModelScope.launch(Dispatchers.IO) {
-            val movieItemByID = databaseRepository.getFavoriteById(id = id, userName = username)
-            withContext(Dispatchers.Main) {
-                _isFavorite.value = movieItemByID != null
-                _movieInfoLiveData.value = movieItemByID
-                _isLoading.value = false
+        try {
+            viewModelScope.launch(Dispatchers.IO) {
+                val movieItemByID = databaseRepository.getFavoriteById(id = id, userName = username)
+                withContext(Dispatchers.Main) {
+                    _isFavorite.value = movieItemByID != null
+                    _movieInfoLiveData.value = movieItemByID
+                    _isLoading.value = false
+                    _isNetwork.value=true
+                }
             }
+        } catch (e: Exception) {
+            _isNetwork.value=false
         }
     }
 
@@ -54,33 +65,38 @@ class DetailFavoriteViewModel @Inject constructor(
     }
 
     fun addOrDeleteInFavorite(movieItem: FavoriteMovie) {
-
-        if (_isFavorite.value == false) {
-            val movie = FavoriteMovie(
-                idRoom = null,
-                userName = username,
-                title = movieItem.title,
-                id = movieItem.id,
-                overview = movieItem.overview,
-                rating = movieItem.rating,
-                genres = movieItem.genres,
-                runtime = movieItem.runtime,
-                tags = movieItem.tags,
-                posterPath = movieItem.posterPath,
-            )
-            viewModelScope.launch(Dispatchers.IO) {
-                databaseRepository.addInFavorite(movie)
-                withContext(Dispatchers.Main) {
-                    _isFavorite.value = true
+        try {
+            if (_isFavorite.value == false) {
+                val movie = FavoriteMovie(
+                    idRoom = null,
+                    userName = username,
+                    title = movieItem.title,
+                    id = movieItem.id,
+                    overview = movieItem.overview,
+                    rating = movieItem.rating,
+                    genres = movieItem.genres,
+                    runtime = movieItem.runtime,
+                    tags = movieItem.tags,
+                    posterPath = movieItem.posterPath,
+                )
+                viewModelScope.launch(Dispatchers.IO) {
+                    databaseRepository.addInFavorite(movie)
+                    withContext(Dispatchers.Main) {
+                        _isFavorite.value = true
+                        _isNetwork.value=true
+                    }
+                }
+            } else {
+                viewModelScope.launch(Dispatchers.IO) {
+                    databaseRepository.removeFavorite(id = movieItem.id, userName = username)
+                    withContext(Dispatchers.Main) {
+                        _isFavorite.value = false
+                        _isNetwork.value=true
+                    }
                 }
             }
-        } else {
-            viewModelScope.launch(Dispatchers.IO) {
-                databaseRepository.removeFavorite(id = movieItem.id, userName = username)
-                withContext(Dispatchers.Main) {
-                    _isFavorite.value = false
-                }
-            }
+        } catch (e: Exception) {
+            _isNetwork.value=false
         }
     }
 

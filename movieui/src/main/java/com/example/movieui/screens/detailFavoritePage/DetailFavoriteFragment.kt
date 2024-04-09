@@ -38,6 +38,11 @@ class DetailFavoriteFragment : DaggerFragment(R.layout.fragment_movie_favorite_p
                 binding.loading.visibility = View.GONE
             }
         }
+        viewModel.isNetwork.observe(viewLifecycleOwner) { isTrue ->
+            if (!isTrue) {
+                binding.modal.visibility = View.VISIBLE
+            }
+        }
         viewModel.movieInfoLiveData.observe(viewLifecycleOwner) { item ->
             with(binding) {
                 buttonBack.setOnClickListener { viewModel.backToFavoritesPage() }
