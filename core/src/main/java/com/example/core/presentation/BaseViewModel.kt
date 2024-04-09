@@ -1,4 +1,4 @@
-package com.example.kinoapp.core.presentation
+package com.example.core.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

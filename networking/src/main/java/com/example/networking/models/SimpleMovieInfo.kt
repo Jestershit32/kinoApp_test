@@ -1,4 +1,4 @@
-package com.example.kinoapp.networking.models
+package com.example.networking.models
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
@@ -7,35 +7,34 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class SimpleMovieInfo(
     @SerializedName("adult")
-    val adult : Boolean,
+    val adult: Boolean,
     @SerializedName("backdrop_path")
-    val backdropPath : String,
+    val backdropPath: String,
     @SerializedName("genre_ids")
-    val genreIds :List<Int>,
+    val genreIds: List<Int>,
     @SerializedName("id")
-    val id:Int,
+    val id: Int,
     @SerializedName("original_language")
-    val originalLanguage : String,
+    val originalLanguage: String,
     @SerializedName("original_title")
-    val originalTitle:String,
+    val originalTitle: String,
     @SerializedName("overview")
     val overview: String,
     @SerializedName("popularity")
-    val popularity:Float,
+    val popularity: Float,
     @SerializedName("poster_path")
-    val posterPath:String,
+    val posterPath: String,
     @SerializedName("release_date")
     val releaseDate: String,
     @SerializedName("title")
     val title: String,
     @SerializedName("video")
-    val video:Boolean,
+    val video: Boolean,
     @SerializedName("vote_average")
-    val voteAverage :Float,
+    val voteAverage: Float,
     @SerializedName("vote_count")
-    val voteCount:Int,
+    val voteCount: Int,
 ) : Parcelable
-
 
 
 data class SimpleMovieInfoDomain(
@@ -46,13 +45,13 @@ data class SimpleMovieInfoDomain(
     val title: String,
 )
 
-fun List<SimpleMovieInfo>.toDomain():List<SimpleMovieInfoDomain>{
-    return this.map {item->
+fun List<SimpleMovieInfo>.toDomain(): List<SimpleMovieInfoDomain> {
+    return this.map { item ->
         SimpleMovieInfoDomain(
-            id=item.id,
+            id = item.id,
             overview = item.overview,
-            popularity=item.popularity,
-            posterPath= item.posterPath,
+            popularity = item.popularity,
+            posterPath = item.posterPath,
             title = item.title,
         )
     }

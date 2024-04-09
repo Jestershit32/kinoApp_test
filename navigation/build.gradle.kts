@@ -1,5 +1,5 @@
 plugins {
-    id ("com.android.library")
+    id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
 }
@@ -19,8 +19,7 @@ android {
         release {
             isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
         }
     }
@@ -47,8 +46,7 @@ dependencies {
     implementation("com.google.dagger:dagger:$dagger_version")
     kapt("com.google.dagger:dagger-compiler:$dagger_version")
 
-
-    implementation ("com.github.terrakok:cicerone:7.1")
+    implementation("com.github.terrakok:cicerone:7.1")
 
 
 }

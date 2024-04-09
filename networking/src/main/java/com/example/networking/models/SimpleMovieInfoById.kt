@@ -1,4 +1,4 @@
-package com.example.kinoapp.networking.models
+package com.example.networking.models
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
@@ -120,18 +120,16 @@ data class SimpleMovieInfoByIdDomain(
 )
 
 fun SimpleMovieInfoById.toDomain(): SimpleMovieInfoByIdDomain {
-    val genreListString= mutableListOf("")
-
-
-    this.genres.forEach { item->
+    val genreListString = mutableListOf<String>()
+    this.genres.forEach { item ->
         genreListString.add(item.name)
     }
     return SimpleMovieInfoByIdDomain(
-        id=this.id,
-        genres =genreListString,
+        id = this.id,
+        genres = genreListString,
         overview = this.overview,
-        popularity=this.popularity,
-        posterPath= this.posterPath,
+        popularity = this.popularity,
+        posterPath = this.posterPath,
         runtime = this.runtime,
         tagline = this.tagline,
         title = this.title,

@@ -8,16 +8,10 @@
       <entry key="app.networking">
         <State />
       </entry>
-      <entry key="core">
-        <State />
-      </entry>
       <entry key="movieui">
         <State />
       </entry>
       <entry key="navigation">
-        <State />
-      </entry>
-      <entry key="networking">
         <State />
       </entry>
       <entry key="storage">

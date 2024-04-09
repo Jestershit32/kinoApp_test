@@ -1,8 +1,8 @@
-package com.example.kinoapp.networking.repository
+package com.example.networking.repository
 
-import com.example.kinoapp.networking.models.ResponseBody
-import com.example.kinoapp.networking.models.SimpleMovieInfoByIdDomain
-import com.example.kinoapp.networking.models.SimpleMovieInfoDomain
+import com.example.networking.models.ResponseBody
+import com.example.networking.models.SimpleMovieInfoByIdDomain
+import com.example.networking.models.SimpleMovieInfoDomain
 
 interface MovieRepository {
     suspend fun searchMovie(
@@ -14,7 +14,7 @@ interface MovieRepository {
     ): SimpleMovieInfoByIdDomain
 
     suspend fun authentication(
-        login:String,
-        password:String
+        login: String,
+        password: String
     ): ResponseBody
 }

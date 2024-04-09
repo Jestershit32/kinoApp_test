@@ -8,7 +8,6 @@ import com.github.terrakok.cicerone.androidx.AppNavigator
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
-
 class MainActivity : DaggerAppCompatActivity() {
 
     @Inject
@@ -21,6 +20,7 @@ class MainActivity : DaggerAppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
+
     override fun onResumeFragments() {
         super.onResumeFragments()
 

@@ -3,7 +3,6 @@ package com.example.core.utils
 import android.content.Context
 import javax.inject.Inject
 
-
 class StringProvider @Inject constructor(
     @ApplicationContext private val context: Context
 ) {

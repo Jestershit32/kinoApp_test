@@ -1,5 +1,5 @@
 plugins {
-    id ("com.android.library")
+    id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
 }
@@ -19,8 +19,7 @@ android {
         release {
             isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
         }
     }
@@ -66,8 +65,8 @@ dependencies {
     api("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
     api("androidx.lifecycle:lifecycle-extensions:2.2.0")
 
-    implementation ("com.github.terrakok:cicerone:7.1")
-    implementation ("com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.5.3")
+    implementation("com.github.terrakok:cicerone:7.1")
+    implementation("com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.5.3")
 
     implementation("io.coil-kt:coil:2.6.0")
 }

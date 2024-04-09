@@ -1,10 +1,9 @@
-package com.example.kinoapp.networking
+package com.example.networking
 
-
-import com.example.kinoapp.networking.models.MovieInfoList
-import com.example.kinoapp.networking.models.PostBodyforLogin
-import com.example.kinoapp.networking.models.ResponseBody
-import com.example.kinoapp.networking.models.SimpleMovieInfoById
+import com.example.networking.models.MovieInfoList
+import com.example.networking.models.PostBodyforLogin
+import com.example.networking.models.ResponseBody
+import com.example.networking.models.SimpleMovieInfoById
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET

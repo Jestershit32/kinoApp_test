@@ -2,7 +2,6 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
-//    id("kotlin-parcelize")
 }
 
 android {
@@ -23,8 +22,7 @@ android {
         release {
             isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
         }
     }
@@ -62,7 +60,7 @@ dependencies {
     kapt("com.google.dagger:dagger-compiler:$dagger_version")
     implementation("com.google.dagger:dagger-android-support:$dagger_version")
     kapt("com.google.dagger:dagger-android-processor:$dagger_version")
-    implementation ("com.github.terrakok:cicerone:7.1")
+    implementation("com.github.terrakok:cicerone:7.1")
 }
 kapt {
     correctErrorTypes = true

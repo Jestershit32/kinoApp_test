@@ -6,7 +6,6 @@ import dagger.MapKey
 import javax.inject.Qualifier
 import kotlin.reflect.KClass
 
-
 @Qualifier
 @Retention
 annotation class ApplicationContext

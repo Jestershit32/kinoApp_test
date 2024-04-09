@@ -1,6 +1,5 @@
 package com.example.networking
 
-import com.example.kinoapp.networking.NetworkService
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import dagger.Module
 import dagger.Provides

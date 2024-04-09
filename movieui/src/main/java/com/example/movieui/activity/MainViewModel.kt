@@ -1,7 +1,7 @@
 package com.example.movieui.activity
 
 import android.content.SharedPreferences
-import com.example.kinoapp.core.presentation.BaseViewModel
+import com.example.core.presentation.BaseViewModel
 import com.example.core.utils.Constants
 import com.example.movieui.Screens
 import com.github.terrakok.cicerone.Navigator

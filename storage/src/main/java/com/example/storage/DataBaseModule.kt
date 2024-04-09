@@ -15,8 +15,7 @@ class DataBaseModule {
     @Provides
     @Singleton
     fun providesAppDatabase(@ApplicationContext context: Context): AppDatabase =
-        Room.databaseBuilder(context, AppDatabase::class.java, "movieDB")
-            .allowMainThreadQueries()
+        Room.databaseBuilder(context, AppDatabase::class.java, "movieDB").allowMainThreadQueries()
             .build()
 
 

@@ -4,7 +4,6 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-
 @Entity(tableName = "favorites")
 data class FavoriteMovie(
     @PrimaryKey(autoGenerate = true)
@@ -12,13 +11,13 @@ data class FavoriteMovie(
     @ColumnInfo(name = "userName")
     var userName: String,
     @ColumnInfo("id")
-    val id:Int,
+    val id: Int,
     @ColumnInfo("title")
     val title: String,
     @ColumnInfo("overview")
     val overview: String,
     @ColumnInfo("genres")
-    val genres:List<String>,
+    val genres: List<String>,
     @ColumnInfo("runtime")
     val runtime: Int,
     @ColumnInfo("tags")

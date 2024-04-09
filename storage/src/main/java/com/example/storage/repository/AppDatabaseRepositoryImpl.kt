@@ -1,11 +1,9 @@
 package com.example.storage.repository
 
-
 import com.example.storage.AppDatabase
 import com.example.storage.entitys.FavoriteMovie
 
 import javax.inject.Inject
-
 
 class AppDatabaseRepositoryImpl @Inject constructor(
     private val database: AppDatabase
